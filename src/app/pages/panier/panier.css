@@ -1,0 +1,6 @@
+.payment-logo-option:has(input:checked) {
+  /* Bords verts gras lorsque le radio est coché */
+  border-color: #10b981; /* green-500 */
+  border-width: 3px;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+}

@@ -1,35 +1,21 @@
-<div class="w-full h-full py-16">
-  <div class="flex-col justify-between flex gap-4 items-start mx-4 py-12">
-    <div class="flex bg-white rounded-lg shadow dark:bg-gray-800 flex-col md:flex-row">
-      <div class="relative w-full md:w-48 flex justify-center items-center">
-        <img
-          src="{{ produitDetail.image }}"
-          alt="shopping image"
-          class="object-cover w-full h-48 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none"
-        />
-      </div>
-      <form class="flex-auto p-6">
-        <div class="flex flex-wrap">
-          <h1 class="flex-auto text-xl font-semibold dark:text-gray-50">{{ produitDetail.nom }}</h1>
+<div class="min-h-screen mx-auto w-full mt-20">
+  <div class="bg-white rounded-xl shadow-2xl overflow-hidden md:flex">
+    <div
+      class="md:w-1/2 p-4 md:p-8 bg-gray-50 flex items-center justify-center cursor-pointer"
+      (click)="openImageModal()"
+    >
+      <img
+        src="{{ produitDetail.image }}"
+        alt="{{ produitDetail.nom }}"
+        class="w-full max-h-[600px] object-cover rounded-lg shadow-lg"
+      />
+    </div>
+    <div class="md:w-1/2 p-6 md:p-10 space-y-6">
+      <div class="border-b pb-4">
+        <h1 class="text-4xl font-bold text-gray-900">{{ produitDetail.nom }}</h1>
+        <div class="flex items-baseline mt-5">
           @if (produitDetail.newPrix) {
-          <div class="flex items-center justify-center space-x-2">
-            <span class="font-bold text-2xl">{{
-              produitDetail.newPrix?.toLocaleString('fr-FR', {
-                style: 'currency',
-                currency: 'XOF',
-                minimumFractionDigits: 0
-              })
-            }}</span>
-            <span class="text-gray-400 line-through text-xl">{{
-              produitDetail.prix.toLocaleString('fr-FR', {
-                style: 'currency',
-                currency: 'XOF',
-                minimumFractionDigits: 0
-              })
-            }}</span>
-          </div>
-          }@else {
-          <p class="font-bold text-2xl">
+          <p class="text-4xl font-bold text-green-700 mr-2">
             {{
               produitDetail.prix.toLocaleString('fr-FR', {
                 style: 'currency',
@@ -38,75 +24,154 @@
               })
             }}
           </p>
-
+          <p class="text-2xl text-gray-500 line-through">
+            {{
+              produitDetail.newPrix!.toLocaleString('fr-FR', {
+                style: 'currency',
+                currency: 'XOF',
+                minimumFractionDigits: 0
+              })
+            }}
+          </p>
+          } @else {
+          <p class="text-4xl font-bold text-green-700 mr-2">
+            {{
+              produitDetail.prix.toLocaleString('fr-FR', {
+                style: 'currency',
+                currency: 'XOF',
+                minimumFractionDigits: 0
+              })
+            }}
+          </p>
           }
-          <!-- <div class="text-xl font-semibold text-gray-500 dark:text-gray-300">$110.00</div> -->
-          <div class="flex-none w-full mt-2 text-sm font-medium text-gray-500 dark:text-gray-300">
-            In stock
-          </div>
         </div>
-        <div class="flex items-baseline mt-4 mb-6 text-gray-700 dark:text-gray-300">
-          <div class="flex space-x-2">
-            <label class="text-center">
-              <input
-                type="radio"
-                class="flex items-center justify-center w-6 h-6 accent-violet-600 bg-gray-100 rounded-lg dark:bg-gray-600"
-                name="size"
-                value="xs"
-              />XS
-            </label>
-            <label class="text-center">
-              <input
-                type="radio"
-                class="flex items-center justify-center w-6 h-6 accent-violet-600"
-                name="size"
-                value="s"
-              />S
-            </label>
-            <label class="text-center">
-              <input
-                type="radio"
-                class="flex items-center justify-center w-6 h-6 accent-violet-600"
-                name="size"
-                value="m"
-              />M
-            </label>
-            <label class="text-center">
-              <input
-                type="radio"
-                class="flex items-center justify-center w-6 h-6 accent-violet-600"
-                name="size"
-                value="l"
-              />L
-            </label>
-            <label class="text-center">
-              <input
-                type="radio"
-                class="flex items-center justify-center w-6 h-6 accent-violet-600"
-                name="size"
-                value="xl"
-              />XL
-            </label>
-          </div>
-          <a
-            href="#"
-            class="hidden ml-auto text-sm text-gray-500 underline md:block dark:text-gray-300"
-            >Size Guide
-          </a>
-        </div>
-        <div class="flex mb-4 text-sm font-medium">
-          <button
-            (click)="onAddToPanier()"
-            type="button"
-            class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-gray-800 mb-2">Description</h2>
+        <p class="text-gray-600 leading-relaxed">
+          Arborez fièrement les couleurs des Lions avec le nouveau maillot domicile. Conçu pour le
+          confort et la performance, ce tissu respirant intègre la technologie Dry-Fit pour vous
+          garder au frais, que vous soyez au stade ou en ville. Édition limitée "Gaïndé".
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-gray-800 mb-3">Taille</h2>
+        <div class="flex flex-wrap gap-3">
+          <label
+            class="size-option px-4 py-2 border-2 border-gray-300 rounded-full cursor-pointer text-gray-700 transition duration-200 hover:border-green-500"
           >
-            Buy now
+            <input type="radio" name="size" value="S" class="hidden" />
+            S
+          </label>
+          <label
+            class="size-option px-4 py-2 border-2 border-gray-300 rounded-full cursor-pointer text-gray-700 transition duration-200 hover:border-green-500"
+          >
+            <input type="radio" name="size" value="M" class="hidden" checked />
+            M
+          </label>
+          <label
+            class="size-option px-4 py-2 border-2 border-gray-300 rounded-full cursor-pointer text-gray-700 transition duration-200 hover:border-green-500"
+          >
+            <input type="radio" name="size" value="L" class="hidden" />
+            L
+          </label>
+          <label
+            class="size-option px-4 py-2 border-2 border-gray-300 rounded-full cursor-pointer text-gray-700 transition duration-200 hover:border-green-500"
+          >
+            <input type="radio" name="size" value="XL" class="hidden" />
+            XL
+          </label>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-6">
+        <h2 class="text-xl font-semibold text-gray-800">Quantité</h2>
+        <div class="flex items-center border border-gray-300 rounded-full">
+          <button
+            (click)="updateQuantity(produitDetail.id, Math.max(1, produitDetail.qteCom! - 1))"
+            class="qty-btn px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-l-full transition-all duration-200 text-lg font-bold"
+            data-action="decrement"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            min="1"
+            [(ngModel)]="produitDetail.qteCom"
+            (change)="updateQuantity(produitDetail.id, produitDetail.qteCom!)"
+            class="border-gray-300 text-center font-medium w-12 focus:outline-none focus:ring-0"
+          />
+          <button
+            (click)="updateQuantity(produitDetail.id, produitDetail.qteCom! + 1)"
+            class="qty-btn px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-r-full transition-all duration-200 text-lg font-bold"
+            data-action="increment"
+          >
+            +
           </button>
         </div>
-        <p class="text-sm text-gray-500 dark:text-gray-300">
-          Free shipping on all continental US orders.
-        </p>
-      </form>
+      </div>
+
+      <button
+        (click)="onAddToPanier()"
+        class="w-full bg-green-600 text-white font-bold py-3 rounded-full mt-8 shadow-lg hover:bg-green-700 transform hover:scale-[1.01] transition-all duration-300 flex items-center justify-center space-x-2"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+          ></path>
+        </svg>
+        <span>Ajouter au panier</span>
+      </button>
+    </div>
+  </div>
+  @if (isModalOpen) {
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 transition-opacity duration-300"
+    (click)="closeImageModal()"
+  >
+    <div
+      class="relative max-w-4xl max-h-full mx-4 p-4 bg-white rounded-xl shadow-2xl overflow-hidden"
+      (click)="$event.stopPropagation()"
+    >
+      <button
+        class="absolute top-2 right-2 text-white text-3xl font-bold p-2 transition cursor-pointer"
+        (click)="closeImageModal()"
+      >
+        <i class="fa-solid fa-circle-xmark text-red-600"></i>
+      </button>
+      <img
+        [src]="modalImageUrl"
+        alt="Aperçu du produit"
+        class="max-h-[90vh] object-contain rounded-lg"
+      />
+    </div>
+  </div>
+  }
+  <!-- Cards -->
+  <div class="relative">
+    <div class="max-w-8xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <h1
+        class="flex items-center align-middle space-x-3 text-4xl font-bold text-yellow-500 mb-8 ml-10"
+      >
+        <p>Autres Produits</p>
+        <i class="fa-solid fa-reply"></i>
+      </h1>
+      <div class="flex flex-wrap gap-8 justify-center items-center">
+        @for (produit of produitsRelatifs; track $index) {
+        <app-product-card [maillot]="produit"></app-product-card>
+        }
+      </div>
     </div>
   </div>
 </div>

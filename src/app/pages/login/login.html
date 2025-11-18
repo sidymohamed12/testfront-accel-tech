@@ -1,0 +1,237 @@
+<div class="min-h-screen flex flex-col md:grid md:grid-cols-2">
+  <div class="flex flex-col justify-center items-center text-center p-8 md:p-12 bg-white">
+    <div class="max-w-md">
+      <img class="w-full" src="logo.png" alt="" />
+
+      <h1 class="mt-6 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
+        Bienvenue sur Go Gaïnde
+      </h1>
+      <p class="mt-4 text-lg text-gray-600">
+        L'excellence en un seul endroit. Connectez-vous pour continuer.
+      </p>
+    </div>
+  </div>
+
+  <div class="flex flex-col justify-center items-center p-8 md:p-16 bg-gray-50">
+    <div class="w-full max-w-md space-y-6">
+      <div class="mb-5 sm:mb-8">
+        <h1 class="mb-2 text-5xl font-semibold text-gray-800 sm:text-title-md">Se connecter</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          Entrez votre email et password pour vous connecter!
+        </p>
+      </div>
+
+      <form class="space-y-6">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1"
+            >Adresse email</label
+          >
+          <div class="relative group">
+            <div
+              class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-200 group-focus-within:text-secondary"
+            >
+              <i class="fa-regular fa-at text-xl text-gray-400"></i>
+            </div>
+            <input
+              formControlName="login"
+              type="email"
+              id="login"
+              name="login"
+              placeholder="joe@gmail.com"
+              class="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out shadow-sm hover:shadow-md"
+              required
+            />
+          </div>
+          <!-- @if ( formLogin.get("login")?.touched && formLogin.get("login")?.invalid ) { @if
+              (formLogin.get('login')?.errors?.['required']) {
+              <span class="text-red-500 text-xs mt-1 block">Veuillez saisir un email.</span>
+              } @if (formLogin.get('login')?.errors?.['email']) {
+              <span class="text-red-500 text-xs mt-1 block">Veuillez saisir un email valide.</span>
+              } } -->
+        </div>
+
+        <!-- <div>
+              <label for="email" class="block text-sm font-medium text-gray-700">
+                Adresse email
+              </label>
+              <div class="mt-1">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out"
+                />
+              </div>
+            </div> -->
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 mb-1"
+            >Mot de passe</label
+          >
+          <div class="relative group">
+            <div
+              class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-200 group-focus-within:text-secondary"
+            >
+              <i class="fa-solid fa-lock text-gray-400"></i>
+            </div>
+            <input
+              formControlName="password"
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              name="password"
+              placeholder="Votre mot de passe"
+              class="w-full pl-12 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out shadow-sm hover:shadow-md"
+              required
+            />
+
+            <button
+              type="button"
+              id="toggle-password"
+              (click)="togglePasswordVisibility()"
+              class="absolute inset-y-0 right-0 pr-4 flex items-center transition-colors duration-200 hover:text-secondary"
+            >
+              <!-- @if(!showPassword) { -->
+              <i class="fa-regular fa-eye-slash text-gray-400 hover:text-black"></i>
+              <!-- } @else {
+                  <i class="fa-regular fa-eye text-gray-400 hover:text-black"></i>
+                  } -->
+            </button>
+          </div>
+          <!-- @if ( formLogin.get("password")?.touched && formLogin.get("password")?.invalid ) { @if
+              (formLogin.get('password')?.errors?.['required']) {
+              <span class="text-red-500 text-xs mt-1 block">Veuillez saisir un mot de passe.</span>
+              } } -->
+        </div>
+
+        <!-- <div>
+              <label for="password" class="block text-sm font-medium text-gray-700">
+                Mot de passe
+              </label>
+              <div class="mt-1 relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i class="fas fa-lock text-gray-400"></i>
+                </div>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  placeholder="Votre mot de passe"
+                  required
+                  class="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-150 ease-in-out"
+                />
+                <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                  <i id="passwordToggle" class="fas fa-eye text-gray-400 hover:text-gray-600"></i>
+                </button>
+              </div>
+            </div> -->
+
+        <div class="flex items-center space-x-2 text-sm text-red-600">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Email ou mot de passe incorrect.</span>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input
+              id="remember"
+              name="remember"
+              type="checkbox"
+              class="h-4 w-4 text-navy-700 focus:ring-navy-700 border-gray-300 rounded"
+            />
+            <label for="remember" class="ml-2 block text-sm text-gray-700">
+              Se souvenir de moi
+            </label>
+          </div>
+
+          <a
+            href="#"
+            class="font-medium text-amber-500 hover:text-amber-600 transition duration-150 ease-in-out"
+          >
+            Mot de passe oublié ?
+          </a>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg shadow-green-500/40 text-base font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all transform hover:scale-[1.02] duration-300 ease-in-out"
+          >
+            Se connecter
+          </button>
+        </div>
+      </form>
+
+      <div class="relative my-6">
+        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+          <div class="w-full border-t border-gray-300"></div>
+        </div>
+        <div class="relative flex justify-center text-sm">
+          <span class="px-3 bg-gray-50 text-gray-500 font-medium"> Ou continuer avec </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <button
+          type="button"
+          aria-label="Se connecter avec Google"
+          class="w-full inline-flex justify-center items-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-150 ease-in-out hover:shadow-md"
+        >
+          <!-- <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                />
+                <path
+                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                />
+                <path
+                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+                />
+                <path
+                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                />
+              </svg>
+              <span class="sm:hidden ml-2">Google</span> -->
+          <i class="fa-brands fa-google text-2xl"></i>
+        </button>
+        <button
+          type="button"
+          aria-label="Se connecter avec Apple"
+          class="w-full inline-flex justify-center items-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-150 ease-in-out hover:shadow-md"
+        >
+          <!-- <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12.01 6.33c-.75 0-1.5.25-2.25.75-.75.5-1.5.75-2.25.75s-1.5-.25-2.25-.75c-.75-.5-1.5-.75-2.25-.75C.76 6.33 0 8.08 0 10.83c0 1.5.5 3 1.5 4.5.75 1.25 1.75 2.5 3 3.75 1.25 1.25 2.25 1.88 3 1.88s1.25-.63 2.5-1.88c1.25-1.25 2.25-2.5 3-3.75 1-1.5 1.5-3 1.5-4.5 0-2.75-.76-4.5-3.01-4.5zm-3 12.42c-.5.63-1.25 1.5-2.25 2.63-.75.75-1.25 1.12-1.5 1.12s-.5-.38-.75-1.13c-1-2.75-1.5-5.5-1.5-8.25 0-1.25.38-2.25 1.13-3 .75-.75 1.75-1.13 3-1.13.75 0 1.5.25 2.25.75.75.5 1.25.75 2 .75s1.25-.25 2-.75c.75-.5 1.5-.75 2.25-.75 1.25 0 2.25.38 3 1.13.75.75 1.13 1.75 1.13 3 0 2.75-.5 5.5-1.5 8.25-.25.75-.5 1.13-.75 1.13s-.75-.38-1.5-1.13c-1-1.13-1.75-2-2.25-2.63-.5-.63-1.25-1-2.25-1s-1.75.37-2.25 1zM12 1c-2.75 0-5 2.25-5 5s2.25 5 5 5 5-2.25 5-5-2.25-5-5-5z"
+                />
+              </svg>
+              <span class="sm:hidden ml-2">Apple</span> -->
+          <i class="fa-brands fa-apple text-2xl"></i>
+        </button>
+        <button
+          type="button"
+          aria-label="Se connecter avec un numéro de téléphone"
+          class="w-full inline-flex justify-center items-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-150 ease-in-out hover:shadow-md"
+        >
+          <!-- <svg
+                class="h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.211-.998-.552-1.348l-5.116-4.136a1.125 1.125 0 00-1.58 0l-1.96 1.587a1.125 1.125 0 01-1.58 0L3.802 8.1a1.125 1.125 0 00-1.58 0L.668 9.688A2.25 2.25 0 000 11.372v1.372c0 .621.504 1.125 1.125 1.125H3.375"
+                />
+              </svg>
+              <span class="sm:hidden ml-2">Téléphone</span> -->
+          <i class="fa-solid fa-phone text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

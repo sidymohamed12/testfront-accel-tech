@@ -2,10 +2,11 @@ import { Component, inject, Input } from '@angular/core';
 import { PanierService } from '../../services/panier-service';
 import { Produit } from '../../models/maillots.model';
 import { Router } from '@angular/router';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  imports: [DecimalPipe],
   templateUrl: './product-card.html',
   styleUrl: './product-card.css',
 })
